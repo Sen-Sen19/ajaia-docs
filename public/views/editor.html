@@ -1,0 +1,53 @@
+<header class="etop">
+  <a class="icon" href="#/" aria-label="Back to documents" title="Back to documents"><svg class="i" width="16" height="16" aria-hidden="true"><use href="/icons.svg#back"/></svg></a>
+  <img class="logo sm" src="/logo.png" alt="Ajaia Docs" onerror="this.remove()">
+  <input class="title" id="title" maxlength="120" aria-label="Document title">
+  <span class="status" id="status" role="status"></span>
+  <span class="avs" id="avs"></span>
+  <button class="btn" id="export" title="Export as Markdown" aria-label="Export as Markdown"><svg class="i" width="16" height="16" aria-hidden="true"><use href="/icons.svg#download"/></svg><span class="lbl">Export .md</span></button>
+  <button class="btn primary" id="share" aria-label="Share"><svg class="i" width="16" height="16" aria-hidden="true"><use href="/icons.svg#share"/></svg><span class="lbl">Share</span></button>
+  <span class="badge shared" id="sharedby" hidden></span>
+</header>
+
+<div class="toolbar" id="toolbar" role="toolbar" aria-label="Formatting">
+  <button type="button" data-t="b" title="Bold" aria-label="Bold" aria-pressed="false"><b>B</b></button>
+  <button type="button" data-t="i" title="Italic" aria-label="Italic" aria-pressed="false"><i>I</i></button>
+  <button type="button" data-t="u" title="Underline" aria-label="Underline" aria-pressed="false"><u>U</u></button>
+  <i class="sep"></i>
+  <button type="button" data-t="h1" title="Heading 1" aria-label="Heading 1" aria-pressed="false">H1</button>
+  <button type="button" data-t="h2" title="Heading 2" aria-label="Heading 2" aria-pressed="false">H2</button>
+  <i class="sep"></i>
+  <button type="button" data-t="ul" title="Bulleted list" aria-label="Bulleted list" aria-pressed="false"><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><circle cx="2.5" cy="4" r="1.3"/><circle cx="2.5" cy="8" r="1.3"/><circle cx="2.5" cy="12" r="1.3"/><rect x="6" y="3.2" width="9" height="1.6" rx=".8"/><rect x="6" y="7.2" width="9" height="1.6" rx=".8"/><rect x="6" y="11.2" width="9" height="1.6" rx=".8"/></svg></button>
+  <button type="button" data-t="ol" title="Numbered list" aria-label="Numbered list" aria-pressed="false"><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><text x="0" y="5.6" font-size="5.5" font-weight="600">1</text><text x="0" y="9.8" font-size="5.5" font-weight="600">2</text><text x="0" y="14" font-size="5.5" font-weight="600">3</text><rect x="6" y="3.2" width="9" height="1.6" rx=".8"/><rect x="6" y="7.2" width="9" height="1.6" rx=".8"/><rect x="6" y="11.2" width="9" height="1.6" rx=".8"/></svg></button>
+</div>
+
+<div class="ro-note" id="ronote" role="status" hidden><svg class="i" width="16" height="16" aria-hidden="true"><use href="/icons.svg#lock"/></svg><span>You have view-only access. Ask the owner for edit access to make changes.</span></div>
+
+<div class="edit"><div class="wrap">
+  <div class="banner" id="banner" hidden><span>This document was changed elsewhere. Reload to see the latest version.</span><button class="btn" id="reload">Reload</button></div>
+  <article class="page"><div id="ed"></div></article>
+</div></div>
+
+<template id="share-dlg">
+  <div class="dlg-head"><h1></h1><button class="icon" data-close aria-label="Close"><svg class="i" width="16" height="16" aria-hidden="true"><use href="/icons.svg#x"/></svg></button></div>
+  <form class="share-form" novalidate>
+    <input name="email" type="email" placeholder="Add people by email" aria-label="Email address" autocomplete="off" required>
+    <select name="role" aria-label="Access level"><option value="view">Can view</option><option value="edit">Can edit</option></select>
+    <button class="btn primary">Share</button>
+  </form>
+  <p class="msg" role="status" hidden></p>
+  <h2 class="dlg-sub">People with access</h2>
+  <ul class="people"></ul>
+  <p class="muted none" hidden>Only you can see this document.</p>
+  <div class="dlg-actions"><button class="btn" data-close>Done</button></div>
+</template>
+
+<template id="person">
+  <li>
+    <span class="slot"></span>
+    <span class="who"><b></b><small></small></span>
+    <select class="role-sel"><option value="view">Can view</option><option value="edit">Can edit</option></select>
+    <span class="role"></span>
+    <button class="btn sm danger" data-rm>Remove</button>
+  </li>
+</template>
